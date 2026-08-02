@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>สุขสันต์วันแม่!</title>
+    <title>สุขสันต์วันแม่จ้า!</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -73,7 +73,7 @@
             margin-top: 4px;
         }
 
-        /* กระดานต่อจิ๊กซอว์ (Board) - ปรับตามอัตราส่วนภาพจริงอัตโนมัติ */
+        /* กระดานต่อจิ๊กซอว์ (Board) */
         .board-wrapper {
             width: 100%;
             max-width: 320px;
@@ -180,23 +180,24 @@
         }
 
         .success-title {
-            color: #2ed573;
+            color: #ff4757;
             font-size: 20px;
             font-weight: 800;
         }
 
         .money-text {
             color: #2f3542;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             margin: 15px 0 20px 0;
             background: #fff0f3;
-            padding: 12px 20px;
+            padding: 12px 18px;
             border-radius: 30px;
             box-shadow: 0 4px 12px rgba(255, 107, 129, 0.15);
             border: 1.5px solid #ffccd5;
             letter-spacing: 0.3px;
             animation: bounceBounce 1.2s infinite ease-in-out;
+            line-height: 1.5;
         }
 
         @keyframes bounceBounce {
@@ -224,7 +225,7 @@
             background: #ff6b81;
         }
 
-        /* ----- หน้า 2: หน้าอวยพรวันแม่ (โชว์ photo5.png เต็มหน้าจอ) ----- */
+        /* ----- หน้า 2: หน้าอวยพรวันแม่ (โชว์ photo5.png หรือ photo5.jpg เต็มหน้าจอ) ----- */
         #wish-page {
             display: none;
             height: 100%;
@@ -245,8 +246,8 @@
     <!-- หน้า 1: เกมต่อจิ๊กซอว์ -->
     <div id="game-page">
         <div class="header-title">
-            <h1>🧩 ต่อภาพรูปภาพคุณแม่!</h1>
-            <p>ลากชิ้นส่วนจิ๊กซอว์มาวางบนกระดานให้สมบูรณ์</p>
+            <h1>🧩 จิ๊กซอว์รูปใครน้าา?</h1>
+            <p>ลองลากมาต่อดูสิ... คุณแม่คนสวยทำได้อยู่แล้ว! 💕</p>
         </div>
 
         <!-- กระดานต่อจิ๊กซอว์ 3x3 -->
@@ -258,28 +259,28 @@
         <div class="pieces-container" id="piecesContainer"></div>
 
         <div class="footer-hint">
-            💡 เอานิ้วแตะค้างแล้วลากชิ้นส่วนมาวางได้เลย!
+            💡 เอานิ้วแตะค้างแล้วลากชิ้นส่วนมาวางได้เลยน้าา!
         </div>
     </div>
 
     <!-- Modal แจ้งเตือนเมื่อต่อเสร็จ -->
     <div id="successModal" class="modal">
         <div class="modal-content">
-            <div class="success-title">🎉 เย้! ต่อจิ๊กซอว์สำเร็จแล้ว!</div>
-            <div style="font-size: 14px; color: #2f3542; margin-top: 5px;">เก่งมากๆ เลยคุณแม่! ❤️</div>
-            <div class="money-text">💸 ลูกสาวสุดที่รัก<br>กำลังโอนเงินให้แม่ 2,000 บาท</div>
-            <button class="next-btn" onclick="goToWishPage()">ไปอ่านคำอวยพรวันแม่ ❤️</button>
+            <div class="success-title">🎉 ยินดีด้วยยย! ต่อครบแล้วจ้า!</div>
+            <div style="font-size: 14px; color: #57606f; margin-top: 6px;">คุณแม่คนเก่ง เก่งที่สุดในโลกเลยยย 🥰</div>
+            <div class="money-text">💸 ลูกสาวสุดที่รัก<br>กำลังเตรียมโอนเงินให้ 2,000 บาทนะจ๊ะ! 😘</div>
+            <button class="next-btn" onclick="goToWishPage()">ไปอ่านการ์ดอวยพรกันต่อเลย ❤️</button>
         </div>
     </div>
 
-    <!-- หน้า 2: หน้าคำอวยพรวันแม่ (โชว์ photo5.png เต็มหน้าจอ) -->
+    <!-- หน้า 2: หน้าคำอวยพรวันแม่ -->
     <div id="wish-page"></div>
 </div>
 
 <script>
     const BOARD_SIZE = 3; // 3x3
     const TOTAL_PIECES = BOARD_SIZE * BOARD_SIZE;
-    const IMAGE_SRC = 'photo1.png'; // เปลี่ยนเป็น photo1.png ตามคำขอ
+    const IMAGE_SRC = 'photo1.jpg'; // เปลี่ยนเป็น photo1.jpg แล้วครับ
 
     let board = document.getElementById('board');
     let piecesContainer = document.getElementById('piecesContainer');
@@ -310,7 +311,6 @@
         img.onload = function() {
             let aspectRatio = img.naturalHeight / img.naturalWidth;
             
-            // คำนวณความสูงกระดานตามอัตราส่วนของภาพจริง
             let boardWidth = board.clientWidth;
             let boardHeight = boardWidth * aspectRatio;
             board.style.height = `${boardHeight}px`;
@@ -347,15 +347,11 @@
             piece.draggable = true;
             piece.dataset.index = i;
 
-            // กำหนดขนาดชิ้นส่วนตามอัตราส่วนของภาพจริงเพื่อไม่ให้ภาพบีบ
             piece.style.width = `${pieceWidth * 0.85}px`;
             piece.style.height = `${pieceHeight * 0.85}px`;
 
-            // กำหนดตำแหน่ง Background
             let row = Math.floor(i / BOARD_SIZE);
             let col = i % BOARD_SIZE;
-            let posX = (col / (BOARD_SIZE - 1)) * 100;
-            let posY = (row / (BOARD_SIZE - 1)) * 100;
 
             piece.style.backgroundImage = `url('${IMAGE_SRC}')`;
             piece.style.backgroundSize = `${boardWidth}px ${boardHeight}px`;
@@ -469,7 +465,7 @@
         document.getElementById('game-page').style.display = 'none';
         
         let wishPage = document.getElementById('wish-page');
-        wishPage.style.backgroundImage = "url('photo5.png')";
+        wishPage.style.backgroundImage = "url('photo5.jpg')"; // สามารถเปลี่ยนเป็น photo5.png ได้ถ้านามสกุลไฟล์เป็น png
         wishPage.style.display = 'block';
     }
 
